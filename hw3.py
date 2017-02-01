@@ -20,6 +20,10 @@ import re
 
 ## Write code to define your parse_counted_words function here.
 def parse_counted_words(x):
+    m = re.findall(([0-9]+)([a-zA-Z]*,x)
+    return m.group(1,2)
+
+    
 
 
 
