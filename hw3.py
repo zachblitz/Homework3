@@ -19,9 +19,15 @@ import re
 # parse_counted_words('101 dalmations!') should return ('101', 'dalmations') ...
 
 ## Write code to define your parse_counted_words function here.
-def parse_counted_words(x):
-    m = re.findall(([0-9]+)([a-zA-Z]*,x)
-    return m.group(1,2)
+def parse_counted_words(string):
+    m = re.findall(r"(\d+)\s(\W[A-Za-z]+|[A-Za-z]+)", string)
+    if len(m)>=1:
+        return(m[-1])
+    else:
+        return None
+   
+   
+    
 
     
 
@@ -33,13 +39,22 @@ def parse_counted_words(x):
 ## We have provided a text file computer_paths.txt. It's not incredibly long -- you can scan through it, but do NOT hard code your answers! Each line contains 1 filesystem path.
 
 ## (a) Write Python code to determine how many of these paths identify FILES, not directories. Save that number in the variable file_paths_num.
+infile = open('computerpaths.txt')
+data = infile.read()
+files = re.findall(r'.+\..+', data)
+file_paths_num = len(files)
 
 ## (b) Write Python code to determine how many of these paths are FULL paths, not relative paths. Save that number in the variable full_paths_num.
+full_paths = re.findall(r"(/Users|~)", data)
+full_paths_num = len(full_paths)
 
 ## (c) Write Python code to determine how many of these paths describe a Python file saved inside a folder called SI206. Save that number in the variable python_course_paths.
+SI206_files = re.findall(r"SI206/(\S+[.]py)", data)
+python_course_paths = len(SI206_files)
 
 ## (d) Write Python code to determine how many of these paths describe a Microsoft file (a file that EITHER ends with .docx OR .xlsx, but nothing else counts) where the file name ends in a digit. Save that total in the variable microsoft_files_num.
-
+microsoft_file = re.findall(r"/(\S+[0-9]+)(.docx|.xlsx)", data)
+microsoft_files_num = len(microsoft_file)
 
 
 
